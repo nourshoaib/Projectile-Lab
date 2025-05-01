@@ -153,7 +153,6 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
     `;
 }
 
-// Plot Trajectory Function
 function plotTrajectory(xPoints, yPoints, range, maxHeight) {
     const ctx = document.getElementById('trajectoryChart').getContext('2d');
     
@@ -185,16 +184,16 @@ function plotTrajectory(xPoints, yPoints, range, maxHeight) {
                         display: true,
                         text: 'Horizontal Distance (m)'
                     },
-                    min: Math.min(...xPoints),
-                    max: Math.max(...xPoints) * 1.1
+                    min: 0,
+                    max: range * 1.1
                 },
                 y: {
                     title: {
                         display: true,
                         text: 'Vertical Height (m)'
                     },
-                    min: Math.min(...yPoints) * 0.9,
-                    max: Math.max(...yPoints) * 1.2
+                    min: 0,
+                    max: maxHeight * 1.2
                 }
             },
             plugins: {
@@ -213,34 +212,22 @@ function plotTrajectory(xPoints, yPoints, range, maxHeight) {
     });
 }
 
-// Add CSS for results display
+// Add some CSS for results display
 const style = document.createElement('style');
 style.textContent = `
-    .result-section {
-        margin-bottom: 20px;
-        padding: 15px;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-    }
-    .result-section h4 {
-        color: #2c3e50;
-        margin-top: 0;
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #ddd;
-    }
     .result-item {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
     }
     .result-label {
         font-weight: bold;
         color: #2c3e50;
         display: inline-block;
-        min-width: 200px;
+        width: 160px;
     }
     .result-value {
         color: #3498db;
-        font-family: monospace;
     }
 `;
 document.head.appendChild(style);
