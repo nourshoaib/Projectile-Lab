@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics Explorer - Projectile Motion</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header/Navigation -->
+    <header id="home" class="welcome-hero">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Physics<span>Explorer</span></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#calculator">Calculator</a></li>
+                            <li><a href="#lesson">Lesson</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Hero Content -->
+            <div class="welcome-hero-txt">
+                <h2>Master Projectile Motion</h2>
+                <p>
+                    Learn the physics behind projectile motion with interactive tools, detailed lessons, and practical examples.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projectile Motion Calculator</h2>
+                <p>Enter the initial conditions to analyze the projectile's motion</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="calculator-form">
+                        <form id="projectileForm">
+                            <div class="form-group">
+                                <label>Initial Velocity (m/s)</label>
+                                <input type="number" class="form-control" id="velocity" placeholder="e.g. 20" step="0.1" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Launch Angle (degrees)</label>
+                                <input type="number" class="form-control" id="angle" placeholder="e.g. 45" min="0" max="90" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Initial X Position (m)</label>
+                                        <input type="number" class="form-control" id="x0" placeholder="e.g. 0" step="0.1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Initial Y Position (m)</label>
+                                        <input type="number" class="form-control" id="y0" placeholder="e.g. 0" step="0.1">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Gravity (m/s²)</label>
+                                        <input type="number" class="form-control" id="gravity" placeholder="e.g. 9.8" step="0.1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Ground Level Y (m)</label>
+                                        <input type="number" class="form-control" id="yGround" placeholder="e.g. 0" step="0.1">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Calculate
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="results-container">
+                        <h3>Results</h3>
+                        <div id="results">
+                            <p>Enter values to see calculations...</p>
+                        </div>
+                        <canvas id="trajectoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson Section -->
+    <section id="lesson" class="lesson-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projectile Motion Lesson</h2>
+                <p>Understand the fundamental concepts</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="lesson-card">
+                        <h3>What is Projectile Motion?</h3>
+                        <p>Projectile motion refers to the motion of an object projected into the air, subject only to acceleration due to gravity. The path followed by a projectile is called its trajectory, which is always a parabola.</p>
+                        
+                        <h4>Key Concepts:</h4>
+                        <ul>
+                            <li>Horizontal and vertical motions are independent</li>
+                            <li>Horizontal velocity remains constant (ignoring air resistance)</li>
+                            <li>Vertical acceleration is constant (9.8 m/s² downward)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="lesson-card">
+                        <h3>Equations of Motion</h3>
+                        
+                        <h4>Horizontal Motion:</h4>
+                        <p>x(t) = x₀ + v₀·cosθ·t</p>
+                        
+                        <h4>Vertical Motion:</h4>
+                        <p>y(t) = y₀ + v₀·sinθ·t - ½gt²</p>
+                        
+                        <h4>Time of Flight:</h4>
+                        <p>T = (2v₀·sinθ)/g</p>
+                        
+                        <h4>Maximum Height:</h4>
+                        <p>H = y₀ + (v₀·sinθ)²/(2g)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            Why does horizontal velocity remain constant?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            In projectile motion (ignoring air resistance), there is no horizontal acceleration acting on the object. According to Newton's First Law, an object in motion stays in motion with constant velocity unless acted upon by an external force.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            What angle gives the maximum range?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            When launched from ground level (y₀ = 0), the maximum range is achieved at a 45° launch angle. For other initial heights, the optimal angle depends on both the initial velocity and height.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            How does air resistance affect projectile motion?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Air resistance reduces both horizontal and vertical components of velocity, resulting in:
+                            <ul>
+                                <li>Shorter range</li>
+                                <li>Lower maximum height</li>
+                                <li>Asymmetric trajectory (steeper descent)</li>
+                            </ul>
+                            Our calculator assumes no air resistance for simplicity.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Physics Explorer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
