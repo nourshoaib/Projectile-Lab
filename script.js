@@ -117,11 +117,11 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
             <h4>Time Equations</h4>
             <div class="result-item">
                 <span class="result-label">x(t):</span>
-                <span class="result-value">${x0.toFixed(1)} + ${(v0 * cosTheta).toFixed(2)}·t</span>
+                <span class="result-value">${(v0 * cosTheta).toFixed(2)}·t + ${x0.toFixed(1)}</span>
             </div>
             <div class="result-item">
                 <span class="result-label">y(t):</span>
-                <span class="result-value">${y0.toFixed(1)} + ${(v0 * sinTheta).toFixed(2)}·t - ${(0.5 * g).toFixed(1)}·t²</span>
+                <span class="result-value">- ${(0.5 * g).toFixed(1)}·t² + ${(v0 * sinTheta).toFixed(2)}·t + ${y0.toFixed(1)}</span>
             </div>
         </div>
         
@@ -129,11 +129,11 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
             <h4>Vectors</h4>
             <div class="result-item">
                 <span class="result-label">Position r(t):</span>
-                <span class="result-value">[${x0.toFixed(1)} + ${(v0 * cosTheta).toFixed(2)}·t, ${y0.toFixed(1)} + ${(v0 * sinTheta).toFixed(2)}·t - ${(0.5 * g).toFixed(1)}·t²]</span>
+                <span class="result-value">[${(v0 * cosTheta).toFixed(2)}·t + ${x0.toFixed(1)} , - ${(0.5 * g).toFixed(1)}·t² + ${(v0 * sinTheta).toFixed(2)}·t + ${y0.toFixed(1)}]</span>
             </div>
             <div class="result-item">
                 <span class="result-label">Velocity v(t):</span>
-                <span class="result-value">[${(v0 * cosTheta).toFixed(2)}, ${(v0 * sinTheta).toFixed(2)} - ${g.toFixed(1)}·t]</span>
+                <span class="result-value">[${(v0 * cosTheta).toFixed(2)}, - ${g.toFixed(1)}·t + ${(v0 * sinTheta).toFixed(2)} ]</span>
             </div>
             <div class="result-item">
                 <span class="result-label">Acceleration a(t):</span>
@@ -157,7 +157,7 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
             </div>
             <div class="result-item">
                 <span class="result-label">Trajectory Equation:</span>
-                <span class="result-value">y = ${y0.toFixed(1)} + (x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})·tan(${angle.toFixed(1)}°) - ${(0.5 * g/(v0 * cosTheta)**2).toExponential(2)}·(x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})²</span>
+                <span class="result-value">y = - ${(0.5 * g/(v0 * cosTheta)**2).toExponential(2)}·(x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})² + (x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})·tan(${angle.toFixed(1)}°) + ${y0.toFixed(1)} </span>
             </div>
         </div>
     `;
