@@ -17,20 +17,25 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Main Calculation Function
+// Main Calculation Function - Updated Version
 function calculateProjectile() {
     // Get Input Values
     const v0 = parseFloat(document.getElementById('velocity').value);
     const angle = parseFloat(document.getElementById('angle').value);
     const x0 = parseFloat(document.getElementById('x0').value) || 0;
-    const y0 = parseFloat(document.getElementById('y0').value) || 0;
+    let y0 = parseFloat(document.getElementById('y0').value) || 0;
     const g = parseFloat(document.getElementById('gravity').value) || 9.8;
-    const yGround = parseFloat(document.getElementById('yGround').value) || 0;
-    
+    let yGround = parseFloat(document.getElementById('yGround').value) || 0;
+
     // Convert angle to radians
     const theta = angle * Math.PI / 180;
-    
+
+    // Handle case where y0 equals yGround
+    if (y0 === yGround) {
+        y0 += 0.0001; // Add tiny offset to ensure we have a trajectory
+    }
+
     // Calculate Time of Flight (when projectile reaches yGround)
-    let timeOfFlight;
     const a = -0.5 * g;
     const b = v0 * Math.sin(theta);
     const c = y0 - yGround;
@@ -41,34 +46,48 @@ function calculateProjectile() {
         return;
     }
     
-    timeOfFlight = (-b + Math.sqrt(discriminant)) / (2 * a);
-    if (timeOfFlight < 0) {
-        timeOfFlight = (-b - Math.sqrt(discriminant)) / (2 * a);
+    const t1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+    const t2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+    // Select the correct time based on yGround
+    let timeOfFlight;
+    timeOfFlight = Math.max(t1, t2);
+
+    // Ensure we have at least some flight time
+    if (timeOfFlight <= 0) {
+        timeOfFlight = 0.1; // Minimum time to show small trajectory
     }
-    
+
     // Calculate Maximum Height
-    const timeToMaxHeight = (v0 * Math.sin(theta)) / g;
+    //const timeToMaxHeight = (v0 * Math.sin(theta)) / g;
     const maxHeight = y0 + (v0 * Math.sin(theta)) ** 2 / (2 * g);
     
     // Calculate Range
     const range = x0 + v0 * Math.cos(theta) * timeOfFlight;
     
-    // Generate Trajectory Points
-    const steps = 50;
-    const timeStep = timeOfFlight / steps;
+    // Generate Trajectory Points 
+    // ensure we always have at least 2 points
+    const steps = Math.max(2, Math.min(50, Math.ceil(timeOfFlight * 10)));
+    const timeStep = timeOfFlight / (steps - 1);
     const xPoints = [];
     const yPoints = [];
+
     
-    for (let i = 0; i <= steps; i++) {
+    for (let i = 0; i < steps; i++) {
         const t = i * timeStep;
         const x = x0 + v0 * Math.cos(theta) * t;
         const y = y0 + v0 * Math.sin(theta) * t - 0.5 * g * t * t;
         
-        // Only plot points above ground
-        if (y >= yGround) {
-            xPoints.push(x);
-            yPoints.push(y);
-        }
+      
+        xPoints.push(x);
+        yPoints.push(y);
+        
+    }
+
+    // Ensure we have at least 2 points for the line
+    if (xPoints.length < 2) {
+        xPoints.push(x0, x0 + 0.1);
+        yPoints.push(y0, y0);
     }
     
     // Display Results
@@ -211,6 +230,15 @@ function plotTrajectory(xPoints, yPoints, range, maxHeight) {
         }
     });
 }
+
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar-default');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 
 // Add some CSS for results display
 const style = document.createElement('style');
