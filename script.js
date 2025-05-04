@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('gravity').value = '9.8';
     document.getElementById('yGround').value = '0';
     
-    // Form Submission
     document.getElementById('projectileForm').addEventListener('submit', function(e) {
         e.preventDefault();
         calculateProjectile();

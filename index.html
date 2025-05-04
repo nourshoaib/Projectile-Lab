@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Physics Explorer - Projectile Motion</title>
+    <title>Projectile Lab</title>
     
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     
@@ -28,7 +28,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Physics<span>Explorer</span></a>
+                        <a class="navbar-brand" href="#">Projectile <span>Lab</span></a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar">
                         <ul class="nav navbar-nav navbar-right">
@@ -41,7 +41,6 @@
                 </div>
             </nav>
             
-            <!-- Hero Content -->
             <div class="welcome-hero-txt">
                 <h2>Master Projectile Motion</h2>
                 <p>
@@ -133,43 +132,126 @@
         <div class="container">
             <div class="section-header">
                 <h2>Projectile Motion Lesson</h2>
-                <p>Understand the fundamental concepts</p>
+                <p>Understand the fundamental concepts through videos and detailed explanations</p>
             </div>
-            
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="lesson-card">
+                        <h3>Introduction to Projectile Motion</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZZ39o1rAZWY" allowfullscreen></iframe>
+                        </div>
+                        <p class="video-caption">Video credit: Khan Academy</p>
+                    
+                        <h4>What is Projectile Motion?</h4>
+                        <p>Projectile motion is the motion of an object thrown or projected into the air, subject only to acceleration due to gravity. The object is called a projectile, and its path is called its trajectory.</p>
+                    
+                        <div class="key-concept-box">
+                            <h5>Key Characteristics:</h5>
+                        <ul>
+                            <li><strong>Two-dimensional motion:</strong> Can be analyzed as two independent one-dimensional motions (horizontal and vertical)</li>
+                            <li><strong>Parabolic trajectory:</strong> The path is always a parabola (when air resistance is negligible)</li>
+                            <li><strong>Constant horizontal velocity:</strong> No acceleration in the horizontal direction (ax = 0)</li>
+                            <li><strong>Constant vertical acceleration:</strong> ay = -g = -9.8 m/s² (downward)</li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
             <div class="row">
                 <div class="col-md-6">
                     <div class="lesson-card">
-                        <h3>What is Projectile Motion?</h3>
-                        <p>Projectile motion refers to the motion of an object projected into the air, subject only to acceleration due to gravity. The path followed by a projectile is called its trajectory, which is always a parabola.</p>
-                        
-                        <h4>Key Concepts:</h4>
+                        <h3>Breaking Down the Motion</h3>
+                    
+                        <h4>Horizontal Motion</h4>
+                        <p>The horizontal motion is uniform (constant velocity) because there are no horizontal forces acting (ignoring air resistance).</p>
+                        <p class="equation">x(t) = x₀ + v₀ₓ·t</p>
+                        <p>Where:</p>
                         <ul>
-                            <li>Horizontal and vertical motions are independent</li>
-                            <li>Horizontal velocity remains constant (ignoring air resistance)</li>
-                            <li>Vertical acceleration is constant (9.8 m/s² downward)</li>
+                            <li>x₀ = initial horizontal position</li>
+                            <li>v₀ₓ = v₀·cosθ = initial horizontal velocity component</li>
+                            <li>t = time</li>
+                        </ul>
+                        
+                        <h4>Vertical Motion</h4>
+                        <p>The vertical motion is uniformly accelerated motion due to gravity.</p>
+                        <p class="equation">y(t) = y₀ + v₀ᵧ·t - ½gt²</p>
+                        <p>Where:</p>
+                        <ul>
+                            <li>y₀ = initial vertical position</li>
+                            <li>v₀ᵧ = v₀·sinθ = initial vertical velocity component</li>
+                            <li>g = acceleration due to gravity (9.8 m/s² downward)</li>
                         </ul>
                     </div>
                 </div>
-                
+            
                 <div class="col-md-6">
                     <div class="lesson-card">
-                        <h3>Equations of Motion</h3>
-                        
-                        <h4>Horizontal Motion:</h4>
-                        <p>x(t) = x₀ + v₀·cosθ·t</p>
-                        
-                        <h4>Vertical Motion:</h4>
-                        <p>y(t) = y₀ + v₀·sinθ·t - ½gt²</p>
-                        
-                        <h4>Time of Flight:</h4>
-                        <p>T = (2v₀·sinθ)/g</p>
-                        
-                        <h4>Maximum Height:</h4>
-                        <p>H = y₀ + (v₀·sinθ)²/(2g)</p>
+                        <h3>Key Quantities and Examples</h3>
+
+                        <h4>Time of Flight</h4>
+                        <p>The total time the projectile remains in the air.</p>
+                        <p class="equation">T = (2v₀·sinθ)/g</p>
+
+                        <h4>Maximum Height</h4>
+                        <p>The highest vertical position reached by the projectile.</p>
+                        <p class="equation">H = y₀ + (v₀·sinθ)²/(2g)</p>
+
+                        <h4>Range</h4>
+                        <p>The horizontal distance traveled when the projectile returns to its initial vertical position.</p>
+                        <p class="equation">R = (v₀²·sin2θ)/g</p>
+
+                        <div class="example-box">
+                            <h5>Practical Example:</h5>
+                            <p>A ball is kicked with an initial velocity of 20 m/s at 30° above horizontal. Calculate:</p>
+                            <ol>
+                                <li>Time of flight</li>
+                                <li>Maximum height</li>
+                                <li>Range</li>
+                            </ol>
+                            <p>Try solving this using the equations above, then check your answers with our calculator!</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="lesson-card">
+                        <h3>Special Cases and Common Mistakes</h3>
+                        <h4>Launch Angle Effects</h4>
+                        <ul>
+                            <li><strong>45° launch:</strong> Provides maximum range when launched from ground level</li>
+                            <li><strong>Complementary angles:</strong> 30° and 60° launches give the same range (when y₀ = yGround)</li>
+                            <li><strong>90° launch:</strong> Pure vertical motion (range = 0)</li>
+                        </ul>
+
+                        <h4>Common Student Mistakes</h4>
+                        <div class="mistakes-list">
+                            <div class="mistake-item">
+                                <strong>Mixing up sin and cos:</strong> Remember v₀ₓ = v₀·cosθ (horizontal) and v₀ᵧ = v₀·sinθ (vertical)
+                            </div>
+                            <div class="mistake-item">
+                                <strong>Forgetting initial height:</strong> The equations change if the projectile doesn't start and end at the same vertical position
+                            </div>
+                            <div class="mistake-item">
+                                <strong>Ignoring vector nature:</strong> Velocity and acceleration are vectors - direction matters!
+                            </div>
+                        </div>
+
+                        <h4>Advanced Considerations</h4>
+                        <p>While our calculator uses simplified physics (no air resistance), in reality:</p>
+                        <ul>
+                            <li>Air resistance reduces range and maximum height</li>
+                            <li>Spin affects trajectory (Magnus effect)</li>
+                            <li>At very high speeds, curvature of Earth becomes significant</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
     </section>
 
     <!-- FAQ Section -->
@@ -233,7 +315,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Physics Explorer. All rights reserved.</p>
+            <p>&copy; 2025 Projectile Lab. All rights reserved.</p>
         </div>
     </footer>
 
