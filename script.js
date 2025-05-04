@@ -1,9 +1,6 @@
-// Initialize Chart
 let trajectoryChart = null;
 
-// DOM Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Set default values
     document.getElementById('x0').value = '0';
     document.getElementById('y0').value = '0';
     document.getElementById('gravity').value = '9.8';
@@ -52,11 +49,6 @@ function calculateProjectile() {
     // Select the correct time based on yGround
     let timeOfFlight;
     timeOfFlight = Math.max(t1, t2);
-
-    // Ensure we have at least some flight time
-    if (timeOfFlight <= 0) {
-        timeOfFlight = 0.1; // Minimum time to show small trajectory
-    }
 
     // Calculate Maximum Height
     //const timeToMaxHeight = (v0 * Math.sin(theta)) / g;
@@ -175,7 +167,6 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
 function plotTrajectory(xPoints, yPoints, range, maxHeight) {
     const ctx = document.getElementById('trajectoryChart').getContext('2d');
     
-    // Destroy previous chart if it exists
     if (trajectoryChart) {
         trajectoryChart.destroy();
     }
@@ -240,7 +231,6 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Add some CSS for results display
 const style = document.createElement('style');
 style.textContent = `
     .result-item {

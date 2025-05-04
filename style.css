@@ -1,13 +1,12 @@
 :root {
-    --primary-color: #3498db; /* Blue */
-    --secondary-color: #f8f9fa; /* Light grey */
-    --accent-color: #2980b9; /* Darker blue */
-    --dark-color: #2c3e50; /* Navy blue */
+    --primary-color: #3498db; 
+    --secondary-color: #f8f9fa; 
+    --accent-color: #2980b9; 
+    --dark-color: #2c3e50; 
     --light-color: #ffffff;
     --text-color: #333333;
 }
 
-/* Base Styles */
 body {
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -32,7 +31,6 @@ a:hover {
     color: var(--accent-color);
 }
 
-/* Header/Navigation */
 .welcome-hero {
     background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('newton.jpg') center/cover no-repeat;
     min-height: 80vh;
@@ -71,19 +69,17 @@ a:hover {
     background: transparent;
     border: none;
     margin-bottom: 0;
-    padding-top: 15px; /* Adds space above navbar */
+    padding-top: 15px; 
 }
 
-/* Adjust header padding to compensate */
 .welcome-hero {
-    padding: 70px 0 150px; /* Reduced top padding (was 150px) */
+    padding: 70px 0 150px; 
 }
 
 .nav.navbar-nav li a:hover {
     color: var(--primary-color);
 }
 
-/* Hero Section */
 .welcome-hero-txt {
     text-align: center;
     margin-top: 150px;
@@ -101,7 +97,6 @@ a:hover {
     margin: 0 auto 30px;
 }
 
-/* Calculator Section */
 .calculator-section {
     padding: 80px 0;
     background-color: var(--light-color);
@@ -143,7 +138,6 @@ a:hover {
     margin-top: 30px;
 }
 
-/* Lesson Section */
 .lesson-section {
     padding: 80px 0;
     background-color: var(--secondary-color);
@@ -157,7 +151,6 @@ a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-/* FAQ Section */
 .faq-section {
     padding: 80px 0;
     background-color: var(--light-color);
@@ -174,7 +167,6 @@ a:hover {
     border-radius: 4px 4px 0 0 !important;
 }
 
-/* Footer */
 footer {
     background: var(--dark-color);
     color: var(--light-color);
@@ -188,10 +180,9 @@ footer {
 
 .navbar-default.scrolled {
     padding-top: 5px;
-    background: rgba(44, 62, 80, 0.9) !important; /* Semi-solid on scroll */
+    background: rgba(44, 62, 80, 0.9) !important; 
 }
 
-/* Responsive Styles */
 @media (max-width: 767px) {
     .welcome-hero-txt{
         margin-top: 150px;
