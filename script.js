@@ -157,7 +157,7 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
             </div>
             <div class="result-item">
                 <span class="result-label">Trajectory Equation:</span>
-                <span class="result-value">y = - ${(0.5 * g/(v0 * cosTheta)**2).toExponential(2)}·(x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})² + (x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})·tan(${angle.toFixed(1)}°) + ${y0.toFixed(1)} </span>
+                <span class="result-value">y = ${((-0.5 * g)/((v0 * cosTheta)**2)).toFixed(6)}·(x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''})² + ${Math.tan(thetaRad).toFixed(4)}·(x${x0 !== 0 ? `-${x0.toFixed(1)}` : ''}) + ${y0.toFixed(1)} </span>
             </div>
         </div>
     `;
