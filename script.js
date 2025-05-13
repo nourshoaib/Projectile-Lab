@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Main Calculation Function
-// Main Calculation Function - Updated Version
 function calculateProjectile() {
     // Get Input Values
     const v0 = parseFloat(document.getElementById('velocity').value);
@@ -50,11 +49,11 @@ function calculateProjectile() {
     timeOfFlight = Math.max(t1, t2);
 
     // Calculate Maximum Height
-    //const timeToMaxHeight = (v0 * Math.sin(theta)) / g;
     const maxHeight = y0 + (v0 * Math.sin(theta)) ** 2 / (2 * g);
     
     // Calculate Range
-    const range = x0 + v0 * Math.cos(theta) * timeOfFlight;
+    const rangeTime = (2 * v0 * Math.sin(theta)) / g;
+    const range = x0 + v0 * Math.cos(theta) * rangeTime;
     
     // Generate Trajectory Points 
     // ensure we always have at least 2 points
@@ -163,24 +162,66 @@ function displayResults(v0, angle, x0, y0, g, yGround, time, height, range) {
     `;
 }
 
-function plotTrajectory(xPoints, yPoints, range, maxHeight) {
+function plotTrajectory(xPoints, yPoints, range, maxHeight, x0, y0) {
     const ctx = document.getElementById('trajectoryChart').getContext('2d');
     
     if (trajectoryChart) {
         trajectoryChart.destroy();
     }
+
+    const xMax = Math.max(...xPoints);
+    const xDivisions = [];
     
+    xDivisions.push(x0);
+    
+    const maxHeightX = xPoints[yPoints.indexOf(Math.max(...yPoints))];
+    xDivisions.push(x0 + (maxHeightX - x0)/2);
+
+    xDivisions.push(maxHeightX);
+    
+    if (Math.abs(range - xMax) > 0.1) {
+        xDivisions.push(range);
+    }
+    
+    if (Math.abs(range - xMax) < 0.1) {
+        xDivisions.push(maxHeightX + (xMax - maxHeightX)/2);
+    }
+    xDivisions.push(xMax);
+
+    const yDivisions = [];
+    const yMax = Math.max(...yPoints);
+    const yMin = Math.min(0, ...yPoints);
+    const finalY = yPoints[yPoints.length-1];
+    
+    yDivisions.push(y0);
+    
+    yDivisions.push(0);
+    
+    yDivisions.push(y0 + (yMax - y0)/2);
+    
+    yDivisions.push(finalY);
+    
+    yDivisions.push(yMax);
+
+    xDivisions.sort((a,b) => a-b);
+    yDivisions.sort((a,b) => a-b);
+
+    const boundedYPoints = yPoints.map(y => Math.max(yMin, Math.min(yMax, y)));
+
+    const yAxisMin = Math.min(yMin, ...yPoints);
+    const yAxisMax = Math.max(yMax, ...yPoints);
+
     trajectoryChart = new Chart(ctx, {
         type: 'scatter',
         data: {
             datasets: [{
                 label: 'Projectile Trajectory',
-                data: xPoints.map((x, i) => ({x, y: yPoints[i]})),
+                data: xPoints.map((x, i) => ({x, y: boundedYPoints[i]})),
                 borderColor: '#3498db',
                 backgroundColor: 'rgba(52, 152, 219, 0.2)',
                 showLine: true,
                 pointRadius: 0,
-                borderWidth: 2
+                borderWidth: 2,
             }]
         },
         options: {
@@ -189,32 +230,41 @@ function plotTrajectory(xPoints, yPoints, range, maxHeight) {
                 x: {
                     type: 'linear',
                     position: 'bottom',
-                    title: {
-                        display: true,
-                        text: 'Horizontal Distance (m)'
-                    },
-                    min: 0,
-                    max: range * 1.1
+                    title: { display: true, text: 'Horizontal Distance (m)' },
+                    min: x0,
+                    max: xMax,
+                    ticks: {
+                        values: xDivisions,
+                        callback: function(value) {
+                            return value.toFixed(1);
+                        }
+                    }
                 },
                 y: {
-                    title: {
-                        display: true,
-                        text: 'Vertical Height (m)'
-                    },
-                    min: 0,
-                    max: maxHeight * 1.2
+                    title: { display: true, text: 'Vertical Height (m)' },
+                    min: yAxisMin,
+                    max: yAxisMax,
+                    ticks: {
+                        values: yDivisions,
+                        callback: function(value) {
+                            return value.toFixed(1);
+                        }
+                    }
                 }
             },
             plugins: {
-                legend: {
-                    display: false
-                },
+                legend: { display: false },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
                             return `(${context.parsed.x.toFixed(1)}m, ${context.parsed.y.toFixed(1)}m)`;
                         }
                     }
+                }
+            },
+            elements: {
+                line: {
+                    tension: 0 
                 }
             }
         }
