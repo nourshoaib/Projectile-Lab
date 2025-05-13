@@ -193,8 +193,14 @@
 
                         <h4>Time of Flight</h4>
                         <p>The total time the projectile remains in the air.</p>
-                        <p class="equation">T = (2v₀·sinθ)/g</p>
-
+                        <p class="equation">T = [v₀·sinθ + √( (v₀·sinθ)² + 2g(y₀ - y<sub>ground</sub>) )] / g</p>
+                        <div class="special-case">
+                            <h4>Special Case: Ground-to-Ground (y₀ = y<sub>ground</sub>)</h4>
+                            <p class="equation">
+                                T = (2v₀·sinθ)/g
+                            </p>
+                            <p>This simplifies when launched and landing at the same elevation.</p>
+                        </div>
                         <h4>Maximum Height</h4>
                         <p>The highest vertical position reached by the projectile.</p>
                         <p class="equation">H = (v₀·sinθ)²/(2g) + y₀</p>
